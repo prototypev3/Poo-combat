@@ -9,7 +9,10 @@
 </head>
 
 <body>
-
+    <?php
+    include('config/db.php');
+    $manager = new PersonnagesManager($mysqlConnection);
+    ?>
 </body>
 
 </html>
