@@ -9,6 +9,25 @@
 </head>
 
 <body>
+    <?php
+    include('../db.php');
+
+    class Combat
+    {
+        private static $combatCounter = 0;
+        private $id;
+        private $characters;
+
+        public function __construct($characters)
+        {
+            $this->id = ++self::$combatCounter;
+            $this->characters = $characters;
+        }
+    }
+    ?>
+
+
+
 
 </body>
 
