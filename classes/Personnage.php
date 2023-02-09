@@ -13,3 +13,25 @@
 </body>
 
 </html>
+<?php
+
+class Personnage {
+    private $name, $pointvie;
+
+
+public function __construct($name,$pointvie)
+{
+        $this->name= $name;
+    $this->pointvie= $pointvie;
+}
+
+public function hit($personnage){
+
+}
+
+public function damage($nbdegats){
+
+}
+
+}
+?>
