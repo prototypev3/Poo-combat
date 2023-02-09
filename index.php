@@ -13,6 +13,21 @@
     include('config/db.php');
     $manager = new PersonnagesManager($mysqlConnection);
     ?>
+
+
+<form action='PersonnageManager.php' method='POST'>
+    <label name="nom">
+        <input type="text" name="nom" placeholder="nom du perso">
+    <label name="type">
+    <input type="text" name="nom" placeholder="nom du perso">
+    <label name="pointvie">
+    <input type="text" name="pv" placeholder="points de vie">
+    <label name="degats">
+    <input type="text" name="degats" placeholder="dégâts">
+
+</form>
 </body>
+
+
 
 </html>
