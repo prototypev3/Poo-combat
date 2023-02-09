@@ -25,9 +25,9 @@
 
         public function enregistrerPersonnage($personnage)
         {
-            $sql = "INSERT INTO perso (nom, pointvie, 'type', degats) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO perso (nom, pointvie, 'type', degats, avatar) VALUES (?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("siss", $personnage->nom, $personnage->pointvie, $personnage->type, $personnage->degats);
+            $stmt->bind_param("siss", $personnage->nom, $personnage->pointvie, $personnage->type, $personnage->degats, $personnage->file);
             $stmt->execute();
         }
 

@@ -32,7 +32,16 @@
                 <input type="text" name="nom" placeholder="nom du perso">
             </td>
         </tr>
+        <tr>
+        
+        <td>
+            <label>Avatar du perso :</label>
+        </td>
 
+        <td>
+            <input type="file" name="file" id="file">
+        </td>
+    </tr>
         
 
         <tr>
@@ -76,7 +85,7 @@
             </td>
         </tr>
 <td colspan="2">
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
+        <button name="ajout" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
 </td>
     </table>
 </form>
@@ -168,8 +177,8 @@
         </tr>
         <td colspan="2">
         
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button>   
+        <button name="selection" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
+        <button name="modifier" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button>   
 
 </td>
     </table>

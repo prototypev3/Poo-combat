@@ -17,6 +17,29 @@
 <div class="miseenforme">
     
 
+<?php
+
+
+include('PersonnageManager.php');
+include('config/db.php');
+
+$personnagesManager =new PersonnagesManager($conn);
+
+if(isset($_POST['ajout'])){
+    $nom = $_POST['nom'];
+    $pointvie = $_POST['pointvie'];
+    $type = $_POST['type'];
+    $degats =['degats'];
+
+    $personnage = new Personnage($nom, $pointvie, $type, $degats);
+    $personnagesManager->enregistrerPersonnage($personnage);
+}
+
+
+
+?>
+
+
 <form action="classes/PersonnageManager.php">
 
     <table class="tabcenter">
@@ -37,14 +60,14 @@
       
         <tr>
         
-            <td>
-                <label>Nom du nouveau perso :</label>
-            </td>
+        <td>
+            <label>Avatar du perso :</label>
+        </td>
 
-            <td>
-                <input type="text" name="nom" placeholder="nom du perso">
-            </td>
-        </tr>
+        <td>
+            <input type="file" name="file" id="file">
+        </td>
+    </tr>
 
         
 
@@ -89,7 +112,7 @@
             </td>
         </tr>
 <td colspan="2">
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
+        <button name="ajout" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
 </td>
     </table>
 </form>
@@ -180,8 +203,8 @@
             </td>
         </tr>
         <td colspan="2">
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button> 
+        <button name="selection" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
+        <button name="modifier" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button> 
 </td>
         
     </table>
