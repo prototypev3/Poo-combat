@@ -17,8 +17,8 @@
 
     <table class="tabcenter">
    <td colspan="2">
-    <h3 style="text-align:center">Créer un nouveau perso</h3><br>
-</td>
+    <h3 style="text-align:center;margin-top:-15px">Créer un nouveau perso</h3><br>
+     </td>
         <tr>
         
             <td>
@@ -76,14 +76,16 @@
         <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
 </td>
     </table>
+</form>
+</div>
 
-
-
+<div class="miseenforme">
+    <form action="classes/PersonnageManager.php">
 
     <table class="tabcenter">
         
     <td colspan="2">
-    <h3 style="text-align:center">Choisir un perso existant</h3><br>
+    <h3 style="text-align:center;margin-top:-15px">Choisir un perso existant</h3><br>
 </td>
 
         <tr>
