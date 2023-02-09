@@ -11,6 +11,7 @@
 <h1 style="text-align:center;margin-top:50px">Jeu de combat : Fighters</h1>
 
 <h2 style="text-align:center;margin-top:30px">Player 2</h2>
+<h3 style="text-align:center;margin-top:50px">Nombre de persos déjà existants: </h3>
 
 <div class="miseenforme">
     
@@ -166,9 +167,11 @@
             </td>
         </tr>
         <td colspan="2">
-        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
-</td>
         
+        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
+        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button>   
+
+</td>
     </table>
 </form>
 </div>

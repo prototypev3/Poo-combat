@@ -12,6 +12,8 @@
 
 <h2 style="text-align:center;margin-top:30px">Player 1</h2>
 
+<h3 style="text-align:center;margin-top:50px">Nombre de persos déjà existants: </h3>
+
 <div class="miseenforme">
     
 
@@ -21,6 +23,18 @@
    <td colspan="2">
     <h3 style="text-align:center;margin-top:-15px">Créer un nouveau perso</h3><br>
      </td>
+     <tr>
+        
+            <td>
+                <label>Nom du nouveau perso :</label>
+            </td>
+
+            <td>
+                <input type="text" name="nom" placeholder="nom du perso">
+            </td>
+        </tr>
+
+      
         <tr>
         
             <td>
@@ -167,6 +181,7 @@
         </tr>
         <td colspan="2">
         <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
+        <button style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button> 
 </td>
         
     </table>
