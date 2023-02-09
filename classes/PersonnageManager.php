@@ -25,7 +25,7 @@
 
         public function enregistrerPersonnage($personnage)
         {
-            $sql = "INSERT INTO personnage (nom, pointvie, type, degats) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO perso (nom, pointvie, 'type', degats) VALUES (?, ?, ?, ?)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("siss", $personnage->nom, $personnage->pointvie, $personnage->type, $personnage->degats);
             $stmt->execute();
@@ -33,7 +33,7 @@
 
         public function modifierPersonnage($nom, $personnage)
         {
-            $sql = "UPDATE personnage SET nom = ?, pointvie = ?, type = ?, degats = ? WHERE nom = ?";
+            $sql = "UPDATE perso SET nom = ?, pointvie = ?, 'type' = ?, degats = ? WHERE nom = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("sisss", $personnage->nom, $personnage->pointvie, $personnage->type, $personnage->degats, $nom);
             $stmt->execute();
@@ -41,7 +41,7 @@
 
         public function supprimerPersonnage($nom)
         {
-            $sql = "DELETE FROM personnage WHERE nom = ?";
+            $sql = "DELETE FROM perso WHERE nom = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("s", $nom);
             $stmt->execute();
@@ -49,7 +49,7 @@
 
         public function selectionnerPersonnage($nom)
         {
-            $sql = "SELECT * FROM personnage WHERE nom = ?";
+            $sql = "SELECT * FROM perso WHERE nom = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("s", $nom);
             $stmt->execute();
@@ -59,21 +59,21 @@
 
         public function compterPersonnages()
         {
-            $sql = "SELECT COUNT(*) as count FROM personnage";
+            $sql = "SELECT COUNT(*) as count FROM perso";
             $result = $this->conn->query($sql);
             return $result->fetch_assoc()['count'];
         }
 
         public function getPersonnages()
         {
-            $sql = "SELECT * FROM personnage";
+            $sql = "SELECT * FROM perso";
             $result = $this->conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
         public function personnageExiste($nom)
         {
-            $sql = "SELECT COUNT(*) as count FROM personnage WHERE nom = ?";
+            $sql = "SELECT COUNT(*) as count FROM perso WHERE nom = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("s", $nom);
             $stmt->execute();
