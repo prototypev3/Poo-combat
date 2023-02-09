@@ -10,7 +10,7 @@
 <body class="clignoter">
 <h1 style="text-align:center;margin-top:50px">Jeu de combat : Fighters</h1>
 
-<h2 style="text-align:center;margin-top:30px">Player 1</h2>
+<h2 style="text-align:center;margin-top:30px">Player 2</h2>
 
 <div class="miseenforme">
     
