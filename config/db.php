@@ -5,7 +5,7 @@
 
         $mysqlConnection = new PDO(
             'mysql:host=localhost;
-            dbname=combat;
+            dbname=minijeu;
             charset=utf8',
             'root',
             ''

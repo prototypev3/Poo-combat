@@ -1,214 +1,83 @@
+<?php
+require_once("../config/autoload.php");
+
+$db = require_once("../config/db.php");
+
+$manager = new HeroesManager($db);
+
+if (isset($_POST["hero_id"])) {
+    header("Location: /fight.php?hero_id=" . $_POST["hero_id"]);
+    exit;
+} else if (isset($_POST["name"])) {
+    $hero = new Hero([
+        "name" => $_POST["name"]
+    ]);
+
+    $manager->add($hero);
+
+    header("Location: /fight.php?hero_id=" . $hero->getId());
+    exit;
+}
+
+$existingHeroes = $manager->findAllAlive();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Accueil - TP Jeu de fight</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link href="/css/styles.css" rel="stylesheet">
 </head>
-<body class="clignoter">
-<h1 style="text-align:center;margin-top:50px">Jeu de combat : Fighters</h1>
 
-<h2 style="text-align:center;margin-top:30px">Player 1</h2>
+<body>
+    <?php
+    $title = "TP Jeu de Fight";
+    $subtitle = "Un jeu de fight au tour par tour en PHP pour apprendre les bases de la POO";
+    require('partials/header.php');
+    ?>
 
-<h3 style="text-align:center;margin-top:50px">Nombre de persos déjà existants: </h3>
+    <div class="container d-flex">
+        <div class="card" style="width: 18rem;margin:0 auto;text-align:center;">
+            <div class="card-body">
+                <form method="post">
+                    <h5 class="card-title">Créez votre hero</h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom de votre hero</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nom" name="name">
+                    </div>
 
-<div class="miseenforme">
-    
+                    <button class="btn btn-primary btn-lg px-4 gap-3">Créer</button>
+                </form>
+            </div>
+        </div>
 
-<?php
+        <?php foreach ($existingHeroes as $existingHero) : ?>
+            <div class="card" style="width: 18rem;margin:0 auto;text-align:center;">
+                <div class="card-body">
 
+                    <form method="post">
+                        <h5 class="card-title">Hero existant</h5>
+                        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                        <div class="mb-3">
+                            <img src="https://api.dicebear.com/5.x/adventurer/svg?seed=<?=$existingHero->getName()?>">
+                            <p><?= $existingHero->getName() ?></p>
+                            <p>❤️ <?= $existingHero->getHealthPoints() ?> HP</p>
+                            <input type="hidden" name="hero_id" value="<?= $existingHero->getId() ?>">
+                        </div>
 
-include('PersonnageManager.php');
-include('config/db.php');
-
-$personnagesManager =new PersonnagesManager($conn);
-
-if(isset($_POST['ajout'])){
-    $nom = $_POST['nom'];
-    $pointvie = $_POST['pointvie'];
-    $type = $_POST['type'];
-    $degats =['degats'];
-
-    $personnage = new Personnage($nom, $pointvie, $type, $degats);
-    $personnagesManager->enregistrerPersonnage($personnage);
-}
-
-
-
-?>
-
-
-<form action="classes/PersonnageManager.php">
-
-    <table class="tabcenter">
-   <td colspan="2">
-    <h3 style="text-align:center;margin-top:-15px">Créer un nouveau perso</h3><br>
-     </td>
-     <tr>
-        
-            <td>
-                <label>Nom du nouveau perso :</label>
-            </td>
-
-            <td>
-                <input type="text" name="nom" placeholder="nom du perso">
-            </td>
-        </tr>
-
-      
-        <tr>
-        
-        <td>
-            <label>Avatar du perso :</label>
-        </td>
-
-        <td>
-            <input type="file" name="file" id="file">
-        </td>
-    </tr>
-
-        
-
-        <tr>
-            <td>
-
-             <label for="options">Choisir le type de votre perso :</label>
-
-            </td>
-
-            <td>
-                    <select id="options" name="options">
-                        <option value="terrien">terrien</option>
-                        <option value="archer">archer</option>
-                        <option value="guerrier">guerrier</option>
-                        <option value="chevalier">chevalier</option>
-                        <option value="mage">mage</option>
-                        <option value="archimage">archimage</option>
-
-                    </select>    
-        
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <label for="options">Points de vie du perso :</label>
-            </td>
-
-            <td>
-             <input type="text" name="pointvie" readonly>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <label for="options">Dégâts causés par le perso :</label>
-            </td>
-
-            <td>
-                <input type="text" name="degats" readonly>
-            </td>
-        </tr>
-<td colspan="2">
-        <button name="ajout" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
-</td>
-    </table>
-</form>
-</div>
-
-<div class="miseenforme">
-    <form action="classes/PersonnageManager.php">
-
-    <table class="tabcenter">
-        
-    <td colspan="2">
-    <h3 style="text-align:center;margin-top:-15px">Choisir ou modifier un perso existant</h3><br>
-</td>
-
-        <tr>
-            <td>
-
-             <label for="options">Choisir un perso existant :</label>
-
-            </td>
-
-            <td>
-                    <select id="options" name="options">
-                       
-
-                    </select>    
-        
-            </td>
-        </tr>
-        <tr>
-        
-        <td>
-            <label>Nouveau nom du perso :</label>
-        </td>
-
-        <td>
-            <input type="text" name="nom" placeholder=" nouveau nom du perso">
-        </td>
-    </tr>
-    <tr>
-            <td>
-
-             <label for="options">Nouveau type du perso :</label>
-
-            </td>
-            <td>
-             <input type="text" name="type" readonly>
-            </td>
-
-        <tr>
-            <td>
-
-             <label for="options">Choisir le type de votre perso :</label>
-
-            </td>
-
-            <td>
-                    <select id="options" name="options">
-                        <option value="terrien">terrien</option>
-                        <option value="archer">archer</option>
-                        <option value="guerrier">guerrier</option>
-                        <option value="chevalier">chevalier</option>
-                        <option value="mage">mage</option>
-                        <option value="archimage">archimage</option>
-
-                    </select>    
-        
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <label for="options">Points de vie du perso :</label>
-            </td>
-
-            <td>
-             <input type="text" name="pointvie" readonly>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <label for="options">Dégâts causés par le perso :</label>
-            </td>
-
-            <td>
-                <input type="text" name="degats" readonly>
-            </td>
-        </tr>
-        <td colspan="2">
-        <button name="selection" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Valider</button>
-        <button name="modifier" style="display: block; margin: 0 auto;margin-top:30px;margin-bottom: -20px;">Modifier</button> 
-</td>
-        
-    </table>
-</form>
-</div>
+                        <button class="btn btn-info btn-lg px-4 gap-3">Choisir</button>
+                    </form>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </form>
+    </div>
 </body>
+
 </html>
